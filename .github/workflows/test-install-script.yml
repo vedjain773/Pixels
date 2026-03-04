@@ -18,6 +18,7 @@ on:
     paths:
       - '.github/workflows/test-install-script.yml'
       - 'install.sh'
+  workflow_dispatch:
 
 jobs:
   linux:
@@ -37,6 +38,9 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ${{ matrix.image }}
+    env:
+      DEBIAN_FRONTEND: noninteractive
+
 
     steps:
       - uses: actions/checkout@v3
@@ -45,33 +49,36 @@ jobs:
 
       - name: Make install.sh Executable
         run: chmod +x install.sh
-
+      
+      - name: Arch Linux Specific Setup
+        if: matrix.os == 'archlinux'
+        run: |
+          pacman-key --init
+          pacman-key --populate
+          pacman -Sy --noconfirm archlinux-keyring
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm sudo
+        
       - name: Run Installation Script
         run: ./install.sh
 
-
   wsl:
     name: WSL
-    runs-on: windows-latest
-    
+    runs-on: windows-latest 
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       - name: Set up WSL2
-        uses: vedantmgoyal9/setup-wsl2@main
-
-      - name: Install dos2unix and Convert Line Endings
-        run: |
-          wsl sudo apt update -y
-          wsl sudo apt install dos2unix -y
-          wsl dos2unix "/mnt/d/a/Pixels_Seminar/Pixels_Seminar/install.sh"  # Convert line endings 
+        uses: vampire/setup-wsl@v6
 
       - name: Make Executable and Run Script
         run: |
-          wsl chmod +x "/mnt/d/a/Pixels_Seminar/Pixels_Seminar/install.sh"
-          wsl bash "/mnt/d/a/Pixels_Seminar/Pixels_Seminar/install.sh"  # Run the script
+          wsl sudo sed -i '/backports/s/^/#/' /etc/apt/sources.list      
+          wsl sudo apt-get update || true
+          wsl sudo apt-get install -y git
+          wsl bash -c "cd `$(wslpath -u '${{ github.workspace }}') && chmod +x install.sh && ./install.sh"
 
   macos:
     name: MacOS Latest
