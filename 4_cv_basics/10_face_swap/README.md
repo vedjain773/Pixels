@@ -39,9 +39,9 @@ Morphological operations help stabilize the masks by filling gaps and removing s
 ## Usage 
 
 1. Open Terminal
-2. Navigate to ../Pixels/4_cv_basics/10_face_swap
+2. Navigate to ```/home/<username>/Pixels/4_cv_basics/10_face_swap```
 3. run   ```make clean``` to clean out any previous builds
-4. run ```make SRC=main.cpp link="src/segmentation.cpp src/processing.cpp"\``` to build the executable
+  4. run ```make SRC=main.cpp link="src/segmentation.cpp src/processing.cpp"``` to build the executable
 5. run ```./face_swap```
 6. Drag your mouse while a key is pressed, to select the first face and press any key to proceed
 7. Then, repeat the same process for the second face
