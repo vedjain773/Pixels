@@ -47,7 +47,9 @@ This repository includes basics to :
     - [Masking](./4_cv_basics/5_masking/README.md)
     - [Morphology](./4_cv_basics/6_morphology/README.md)
     - [OpenCV](./4_cv_basics/7_opencv_overview/README.md)
-    - [Blob Detection](./4_cv_basics/8_blob_detection/README.md)
+    - [Image Segmentation](./4_cv_basics/8_image_segmentation/README.md)
+    - [Invisibility Cloak](./4_cv_basics/9_invisibility_cloak/README.md)
+    - [Face Swap](./4_cv_basics/10_face_swap/README.md)
 - [Assignments](./5_assignments)
 - [Installation Instructions](#installation-instructions)
 
@@ -106,5 +108,3 @@ chmod +x install.sh
 This will install `git`, clone the repository, and install necessary dependencies automatically.
 
 Installation is successfully completed.
-
-
