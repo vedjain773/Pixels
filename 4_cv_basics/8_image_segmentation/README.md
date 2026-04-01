@@ -144,7 +144,7 @@ Each approach has its strengths and weaknesses, making them suitable for differe
 1. Navigate to ../Pixels_Seminar/4_cv_basics/9_image_segmentation
 2. Open terminal in this folder
 3. run   ```make clean``` to clean out any previous builds
-4. run ```make SRC=main.cpp link=src/segementation.cpp``` to build the executable
+4. run ```make SRC=main.cpp link=src/segmentation.cpp``` to build the executable
 5. run ```./image_segmentation```
 
 6. **Using the Program**
@@ -165,4 +165,3 @@ Each approach has its strengths and weaknesses, making them suitable for differe
    ![Resulting Image](assets/resulting_image.jpeg)
    
    - Press any key to exit
-
